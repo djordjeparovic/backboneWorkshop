@@ -11,7 +11,7 @@
 <nav>
 	<a href="#what-is-backbone">Šta je Backbone web aplikacija</a>
 	<a href="#main-app-parts">Glavni delovi aplikacije</a>
-	<a href="">Backbone.Model</a>
+	<a href="#backbone-model">Backbone.Model</a>
 	<a href="">Backbone.Collection</a>
 	<a href="">Backbone.View</a>
 	<a href="">Backbone.Router</a>
@@ -19,11 +19,10 @@
 	<a href="">Problemi</a>
 </nav>
 <article>
-	<a id="what-is-backbone"></a>
-	<p>
+	<p><a id="what-is-backbone"><h2>Šta je Backbone web aplikacija</h2></a>
 	"Backbone aplikacija" je web aplikacija struktuirana na način koji je predstavljen u backbone.js bibilioteci. To je MV* arhitektura.</p>
 	<p>Aplikaciju čine tri dela: Manipulacija DOM-a, Pomoćne funkcije (operacije sa objektima, operacije nad nizovima, ...) i Backbone.js bibilioteka koja određuje strukturu cele aplikacije.</p>
-	<img src="images/Backbone01.png" class="medium">
+	<img src="images/Backbone01.png" class="small">
 	<p><span>jQuery</span> (ili neka druga srodna bibilioteka) služe da manipulišu DOM-om, jQuery je preporučen od strane Backbone-a, i cela komunikacija sa <span>HTML</span> dokumentom se odvija preko jQuery-a.</p>
 	<p>Najčešće korištene <span>"utility"</span> biblioteke, <span>Underscore.js</span> i <span>Lodash.js</span> nude funkcionalnosti koje Backbone koristi interno, ali koje su potrebne i korisnicima za lakši razvoj aplikacije.<p>
 	<img src="images/BackboneCode1.png" class="large">
@@ -33,7 +32,23 @@
 </article>
 
 <article>
-	<a id="main-app-parts"></a>
+	<p><a id="main-app-parts"><h2>Glavni delovi aplikacije</h2></a>
+	<span>>>Stari Grci su verovali da je sve sačinjeno od četiri elementa: zemlja, voda, vazduh i vatra.</span></p>
+	<p>Generalna podela Backbone applikacije je na:
+	<ul>
+	<li>Model,</li>
+	<li>Collection,</li>
+	<li>View i</li>
+	<li>Router</li>
+	</ul>
+	Aplikacija je sastavljena od jednog ili više modela, kolekcija, pogleda i rutera. Ti delovi međusobno komuniciraju i omogućavaju razne funkcionalnosti. 
+	<img src="images/Backbone021.png" class="large">
+	Ovi delovi su objekti sa predefinisanim atributima (od kojih su neki definisani prazni), koje kada predefinisemo menjamo njihovo "default" ponašanje (proširujemo funkcionalnosti).</p>
+</article>
+
+
+<article>
+	<p><a id="backbone-model"><h2>Backbone.Model</h2></a>
 
 </article>
 

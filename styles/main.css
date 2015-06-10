@@ -19,14 +19,16 @@ article {
 }
 img { 
 	margin-top: 10px;
-/*	max-width: 60%; */
 	text-align: center;
+}
+img.large {
+	max-width: 100%;
 }
 img.medium {
 	max-width: 80%;
 }
-img.large {
-	max-width: 100%;
+img.small {
+	max-width: 70%;
 }
 span {
 	font-style: italic;
