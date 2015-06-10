@@ -1,9 +1,41 @@
-<html>
+<!DOCTYPE html>
+<html lang="sr">
 <head>
 	<title>Backbone Workshop</title>
+	<meta charset='utf-8'>
 	<link href='http://fonts.googleapis.com/css?family=Fjord+One' rel='stylesheet' type='text/css'>
+	<link href='styles/main.css' rel='stylesheet' type='text/css'>
 </head>
 <body>
-BB W
+<h1>Backbone Workshop</h1>
+<nav>
+	<a href="#what-is-backbone">Šta je Backbone web aplikacija</a>
+	<a href="#main-app-parts">Glavni delovi aplikacije</a>
+	<a href="">Backbone.Model</a>
+	<a href="">Backbone.Collection</a>
+	<a href="">Backbone.View</a>
+	<a href="">Backbone.Router</a>
+	<a href="">Tok razvoja aplikacije</a>
+	<a href="">Problemi</a>
+</nav>
+<article>
+	<a id="what-is-backbone"></a>
+	<p>
+	"Backbone aplikacija" je web aplikacija struktuirana na način koji je predstavljen u backbone.js bibilioteci. To je MV* arhitektura.</p>
+	<p>Aplikaciju čine tri dela: Manipulacija DOM-a, Pomoćne funkcije (operacije sa objektima, operacije nad nizovima, ...) i Backbone.js bibilioteka koja određuje strukturu cele aplikacije.</p>
+	<img src="images/Backbone01.png" class="medium">
+	<p><span>jQuery</span> (ili neka druga srodna bibilioteka) služe da manipulišu DOM-om, jQuery je preporučen od strane Backbone-a, i cela komunikacija sa <span>HTML</span> dokumentom se odvija preko jQuery-a.</p>
+	<p>Najčešće korištene <span>"utility"</span> biblioteke, <span>Underscore.js</span> i <span>Lodash.js</span> nude funkcionalnosti koje Backbone koristi interno, ali koje su potrebne i korisnicima za lakši razvoj aplikacije.<p>
+	<img src="images/BackboneCode1.png" class="large">
+	<p><span>Underscore.js</span> je <span>"hard-dependency"</span> za Backbone.js pa mora biti učitan pre <span>backbone.js</span> fajla. Takođe, ukoliko naša aplikacija koristi jQuery ili neku srodnu bibilioteku (a najverovatnije hoće), i ta biblioteka mora biti učitana pre Backbone-a.</p>
+	<p>Glavne beneficije koje Backbone nudi su visok stepen <span>fleksibilnosti</span> u načinu razvoja aplikacije, precizna <span>organizacija</span> koda (što nam omogućava efikasnije dodavanje novih funkcionalnosti i izmene postojećih) i <span>kontrola</span> svih delova aplikacije (nema mnogo "magije").</p>
+	<p>Pored svega ovoga, Backbone je samo Javascript <span>bibilioteka</span>, a ne fremvork jer se korisnik ne forsira da koristi ponuđene funkcionalnosti striktno "po receptu".</p>
+</article>
+
+<article>
+	<a id="main-app-parts"></a>
+
+</article>
+
 </body>
 </html>
