@@ -30,6 +30,9 @@ img.medium {
 img.small {
 	max-width: 70%;
 }
+img.verySmall {
+	max-width: 60%;
+}
 span {
 	font-style: italic;
 	color: #0004F5;

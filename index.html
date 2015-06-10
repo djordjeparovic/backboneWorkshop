@@ -12,11 +12,11 @@
 	<a href="#what-is-backbone">Šta je Backbone web aplikacija</a>
 	<a href="#main-app-parts">Glavni delovi aplikacije</a>
 	<a href="#backbone-model">Backbone.Model</a>
-	<a href="">Backbone.Collection</a>
-	<a href="">Backbone.View</a>
-	<a href="">Backbone.Router</a>
-	<a href="">Tok razvoja aplikacije</a>
-	<a href="">Problemi</a>
+	<a href="#backbone-collection">Backbone.Collection</a>
+	<a href="#backbone-view">Backbone.View</a>
+	<a href="#backbone-router">Backbone.Router</a>
+	<a href="#development-flow">Tok razvoja aplikacije</a>
+	<a href="#problems">Problemi</a>
 </nav>
 <article>
 	<p><a id="what-is-backbone"><h2>Šta je Backbone web aplikacija</h2></a>
@@ -33,7 +33,7 @@
 
 <article>
 	<p><a id="main-app-parts"><h2>Glavni delovi aplikacije</h2></a>
-	<span>>>Stari Grci su verovali da je sve sačinjeno od četiri elementa: zemlja, voda, vazduh i vatra.</span></p>
+	<!-- JOKE --><span>>>Stari Grci su verovali da je sve sačinjeno od četiri elementa: zemlja, voda, vazduh i vatra.</span></p>
 	<p>Generalna podela Backbone applikacije je na:
 	<ul>
 	<li>Model,</li>
@@ -42,13 +42,29 @@
 	<li>Router</li>
 	</ul>
 	Aplikacija je sastavljena od jednog ili više modela, kolekcija, pogleda i rutera. Ti delovi međusobno komuniciraju i omogućavaju razne funkcionalnosti. 
-	<img src="images/Backbone021.png" class="large">
+	<img src="images/Backbone021.png" class="large"><br>
 	Ovi delovi su objekti sa predefinisanim atributima (od kojih su neki definisani prazni), koje kada predefinisemo menjamo njihovo "default" ponašanje (proširujemo funkcionalnosti).</p>
+	<p>Pošto je neophodna međusobna komunikacija između različitih instanci od Backbone.View, Backbone.Model, Backbone.Collection i Backbone.Router potrebno je omogućiti njihovu međusobnu "vidljivost". Ne želimo da "prljamo" prostor globalnih varijabli sa više promenjivih iz aplikacije, pa je dobra praksa sve globalne promenjive potrebne za našu aplikaciju smestiti u jedan globalni objekat, a različite sekcije aplikacije u različite atribute tog objekta.
+	Npr ovako:<br>
+	<img src="images/Backbone022.png" class="verySmall">
+	</p>
 </article>
-
 
 <article>
 	<p><a id="backbone-model"><h2>Backbone.Model</h2></a>
+	<span>Backbone.Model</span> opisuje formu u kojoj se nalazi neki podatak unutar aplikacije, ili model iz realnog života. Npr. model automobila bi sadržao glavne podatke o automobilu : model, godište, potrošnja...</p>
+	<p>Običan Javascript objekat je takođe jedan model, a Backbone.Model uz sve to nudi funkcionalnosti koje se skoro uvek koriste. Npr. cesto citamo vrednosti modela, ili menjamo neke atribute (za to su definisane funkcije <span>get()</span> i <span>set()</span> ), validacija vrednosti atributa modela ( <span>validate()</span> ), dalje, ukoliko je potrebno dovući podatke sa mreže, metode za učitavanje podataka u model. ( <span>fetch()</span> ).
+	</p>
+	<p>Moguće je i postaviti podrazumevane vrednosti za atribute modela, što definišemo u <span>defaults</span> objektu. Osim ovih, postoji još veliki broj mogućnosti koje nudi Backbone.Model, a sve su opisane u Backbone dokumentaciji (<a href="http://backbonejs.org/#Model">http://backbonejs.org/#Model</a>).</p>
+	<p>Primer definicije jednog Backbone modela: <br>
+	<img src="images/BackboneModel.png" class="medium">	
+	</p>
+</article>
+
+<article>
+	<p><a id="backbone-collection"><h2>Backbone.Collection</h2></a>
+
+	</p>
 
 </article>
 
