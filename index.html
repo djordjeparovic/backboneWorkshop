@@ -32,7 +32,8 @@
 
 <article>
 	<p><a id="main-app-parts"><h2>Glavni delovi aplikacije</h2></a>
-	<!-- JOKE --><span>>>Stari Grci su verovali da je sve sačinjeno od četiri elementa: zemlja, voda, vazduh i vatra.</span></p>
+	<!--<span>>>Stari Grci su verovali da je sve sačinjeno od četiri elementa: zemlja, voda, vazduh i vatra.</span>-->
+    </p>
 	<p>Generalna podela Backbone applikacije je na:
 	<ul>
 	<li>Model,</li>
@@ -42,7 +43,7 @@
 	</ul>
 	Aplikacija je sastavljena od jednog ili više modela, kolekcija, pogleda i rutera. Ti delovi međusobno komuniciraju i omogućavaju razne funkcionalnosti. 
 	<img src="images/Backbone021.png" class="large"><br>
-	Ovi delovi su objekti sa predefinisanim atributima (od kojih su neki definisani prazni), koje kada predefinisemo menjamo njihovo "default" ponašanje (proširujemo funkcionalnosti).</p>
+	Ovi delovi su objekti sa predefinisanim atributima (od kojih su neki definisani prazni), koje kada predefinišemo menjamo njihovo "default" ponašanje (proširujemo funkcionalnosti).</p>
 	<p>Pošto je neophodna međusobna komunikacija između različitih instanci od Backbone.View, Backbone.Model, Backbone.Collection i Backbone.Router potrebno je omogućiti njihovu međusobnu "vidljivost". Ne želimo da "prljamo" prostor globalnih varijabli sa više promenjivih iz aplikacije, pa je dobra praksa sve globalne promenjive potrebne za našu aplikaciju smestiti u jedan globalni objekat, a različite sekcije aplikacije u različite atribute tog objekta.
 	Npr ovako:<br>
 	<img src="images/Backbone022.png" class="verySmall">
@@ -124,7 +125,7 @@ Sadrži veći broj metoda i atributa o kojima sada neće biti reči. Značajan n
     <p>Kako proširiti (ekstendovati, naslediti) Backbone.View</p>
     <p><span>this.$el.append()</span> VS <span>document.createDocumentFragment()</span> </p>
     <!--http://elving.me/post/48040344160/rendering-backbone-collections-with-->
-    <p>Kako promeniti smer sortiranja (rastuće, opadajuće)</p>
+    <p>Kako promeniti smer sortiranja kolekcije(rastuće, opadajuće)</p>
     <p>Obostrano povezivanje u Backbone (Two-way binding)</p>
 
 </article>
