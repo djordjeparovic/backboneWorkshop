@@ -14,9 +14,8 @@
 	<a href="#backbone-model">Backbone.Model</a>
 	<a href="#backbone-collection">Backbone.Collection</a>
 	<a href="#backbone-view">Backbone.View</a>
-	<a href="#backbone-router">Backbone.Router</a>
-	<a href="#development-flow">Tok razvoja aplikacije</a>
-	<a href="#problems">Problemi</a>
+	<a href="#backbone-router">Backbone.Router i Backbone.History</a>
+	<a href="#problems">Diskusija</a>
 </nav>
 <article>
 	<p><a id="what-is-backbone"><h2>Šta je Backbone web aplikacija</h2></a>
@@ -70,6 +69,8 @@
     Kolekcije i modeli igraju veoma važnu ulogu u (možda) najbitnijem delu aplikacije, View-u, jer se u njima nalaze svi podaci koji ce biti predstavljeni korisniku. Posledica većeg dela korisnikovih akcija će promene modela i kolekcija u aplikaciji.
 
     <p>U funkciji <span>Backbone.sync</span> je definisan način na koji će se podaci iz modela (kolekcija) slati na server, i ukoliko treba da napravimo neke izmene u odnosu na podrazumevani način komunikacije potrebno je da predefinišemo tu funkciju.</p>
+    <p>Unutar Backbone.Collection objekta raspolazemo sa metodama <span>initialize() [prazan], toJSON(options) [mapira toJSON(options) iz Backbone.Model], sync() [Backbone.sync], add(models, options), remove(models, options), set(model, options), reset(models, options), push(models, options), pop(options), unshift(model, option) [dodaje model na početak], shift(options) [skida model sa početka kolekcije], slice(), get(obj), at(index), where(attrs, first), findWhere(attrs), sort(options), pluck(attrs), fetch(options), create(models, options), parse(resp, options) [return resp], clone(), modelId(attrs).</span> itd.
+    </p>
 </article>
 
 <article>
@@ -102,27 +103,29 @@
     <p>Događaji se definišu unutar Backbone.View objekta u events atributu, koji sadrži uređene parove <span>'događaj':'akcijaNaDogađaj'</span>. Na primer:<br>
     <img src="images/Events.png"><br>
     </p>
-    <a href="http://backbonejs.org/docs/backbone.html#section-18"><span>Backbone.Events</span></a> pruža sličan interfejs kao i jQuery za rad sa događajima. Bitno je obratiti pažnju da kada se neki element uklanja iz Backbone.View objekta da li se istovremeno uklanja i eventListener za taj događajaj. Preporuka je koristiti metod <span>listenTo</span> umesto <span>on</span>. 
-
+    <a href="http://backbonejs.org/docs/backbone.html#section-18"><span>Backbone.Events</span></a> pruža sličan interfejs kao i jQuery za rad sa događajima. Bitno je obratiti pažnju da kada se neki element uklanja iz Backbone.View objekta da li se istovremeno uklanja i eventListener za taj događajaj. Preporuka je koristiti metod <span>listenTo</span> umesto <span>on</span>.
 </article>
 
 <article>
 	<p><a id="backbone-router"><h2>Backbone.Router</h2></a>
-	</p>
-
+        <span>Backbone.Router</span> povezuje određene URL adrese unutar aplikacije i oglašava događaje kada dođe do promene adrese. Dalje, te događaje možemo da povežemo sa adekvatnim akcijama. Praktično, to može da izgleda ovako: <br>
+        <img src="images/Router01.png" class="medium"><br>
+        Pored očigledne mogućnosti da različitim delovima aplikacije pristupamo preko URL adrese i da na osnovu parametara adrese dobijamo potrebne informacije,
+ sa pozicije developera, Router pomaže da (potencijalno veliku)	aplikaciju razbijemo na manje celine preko različitih adresa, a zatim delove aplikacije razvijamo nezavisno od ostatka.</p>
+<p>Unutar Backbone.Router objekta od koristi su funkcije <span>navigate()</span> [pomoću koje menjamo trenutnu adresu brauzera (logički gledano, to znači da prelazimo iz jednog dela aplikacije u drugi). Takav poziv se najčešće nalazi unutar nekog eventHandler-a koji treba promeni trenutni pogled aplikacije.], dalje imamo <span>execute()</span>, kao i <span>initialize()</span>. </p>
+   <p> <a href="http://backbonejs.org/docs/backbone.html#section-198"><span>Backbone.History</span></a> je objekat koji služi za upravljanje istorijom brauzera, praćenjem promena ruta (route), itd...
+Sadrži veći broj metoda i atributa o kojima sada neće biti reči. Značajan nam je metod <span>start()</span> koji pokreće praćenje hash promena u brauzeru, praktično omogućava da se na hash-promenu rute ispali događaj.
+    </p>
 </article>
 
-<article>
-	<p><a id="development-flow"><h2>Tok razvoja aplikacije</h2></a>
-
-	</p>
-
-</article>
 
 <article>
-	<p><a id="problems"><h2>Problemi</h2></a>
-
-	</p>
+	<p><a id="problems"><h2>Diskusija</h2></a> </p>
+    <p>Kako proširiti (ekstendovati, naslediti) Backbone.View</p>
+    <p><span>this.$el.append()</span> VS <span>document.createDocumentFragment()</span> </p>
+    <!--http://elving.me/post/48040344160/rendering-backbone-collections-with-->
+    <p>Kako promeniti smer sortiranja (rastuće, opadajuće)</p>
+    <p>Obostrano povezivanje u Backbone (Two-way binding)</p>
 
 </article>
 </body>
