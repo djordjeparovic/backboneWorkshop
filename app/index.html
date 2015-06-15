@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Car Demo Backbone App v01</title>
+	<link rel="stylesheet" type="text/css" href="styles/style.css">
+</head>
+<body>
+<!-- mini ribbon at the top [fixed] -->
+<div id="sortSelector"></div>
+<div id="goingBack"></div>
+<div id="page">
+<div id="listOfCars"></div>
+<div id="compareCars"></div>
+<div id="detailedCarView"></div>
+</div>
+<!-- mini ribbon at the bottom [fixed] -->
+<div id="miniCompareView"></div> 
+
+<script id="listCarItemView" type="text/template">
+	<article>
+		<div class="imageDiv"></div>
+		<div class="carDiv" data-carId="<%= id %>">
+			<p class="title"><%= title %></p>
+			<p class="price">Price: $<%= price %></p>
+			<p class="mileage">Mileage: <%= mileage %></p>
+			<p class="transmission">Transmission: <%= transmission %></p>
+		</div>
+		<div>
+			<input type="button" value="More Info" class="btn btn-moreInfo">
+			<input type="button" value="Edit" class="btn btn-edit">
+			<label>Compare<input type="checkbox" name="compareChec" value="value" <%= selected %> ></label>
+		</div>
+	</article>
+</script>
+
+<script id="listCarItemEdit" type="text/template">
+	<article>
+		<div class="imageDiv"></div>
+		<div class="carDiv">
+			<p>Title : <input type="text" class="inputTitle" value="<%= title %>"></p>
+			<p>Price : <input type="text" class="inputPrice" value=<%= price %>></p>
+			<p>Mileage : <input type="text" class="inputMileage" value=<%= mileage %>></p>
+			<p>Transmission : <input type="text" class="inputTransmission" value=<%= transmission %>></p>
+		</div>
+		<div>
+			<input type="button" value="Cancel" class="btn btn-cancel">
+			<input type="button" value="Save" class="btn btn-save">
+		</div>
+	</article>
+</script>
+<script id="detailedCarViewTemplate" type="text/template">
+</script>
+<script type="text/javascript"src="bower_components/jquery/dist/jquery.js"></script>
+<script type="text/javascript" src="bower_components/underscore/underscore.js"></script>
+<script type="text/javascript" src="bower_components/backbone/backbone.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>

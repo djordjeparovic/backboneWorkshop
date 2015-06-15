@@ -1,0 +1,151 @@
+		body {
+			background-color: #29016E;
+		}
+		table, th, td {
+    		border: 1px solid black;
+   			border-collapse: collapse;
+		}
+		th, td {
+		    padding: 5px;
+		    text-align: left;    
+		}
+		th {
+			text-align: center;
+		}
+
+		table{
+			font-size: 18pt;
+			background-color: #FFEC80;
+			width: 70%;
+			margin-left: 10%;
+			margin-right: 10%;
+			padding-left: 5%;
+			padding-right: 5%;
+			border-color: #0000FF;
+			border-style: solid;
+
+		}
+		td {
+			border-color: #0000FF;
+			border-collapse: collapse;
+			border-style: solid;
+		}
+		table, th, td{
+			border-radius: 20px;
+		}
+		#page {
+			margin-top: 10px;
+			margin-bottom: 50px;
+		}
+		#sortSelector {
+			text-align: center;
+		}
+		#miniCompareView {
+			position: fixed;
+			bottom: 0;
+			background-color: #42E3B3;
+			width: 100%;
+			height: 40px;
+			text-align: center;
+			font-size: 15pt;
+			color: #6021A3;
+
+		}
+		input[type="text"] {
+		padding: 10px;
+		border-radius: 10px;
+		border: solid 1px #dcdcdc;
+		transition: box-shadow 0.3s, border 0.3s;
+		}
+		input[type="text"].focus {
+		border: solid 1px #707070;	  
+		box-shadow: 0 0 5px 1px #969696;
+		}
+
+
+		article {
+			width: 70%;
+			margin-left: 8%;
+			margin-right: 8%;
+    		padding-left: 7%;
+    		padding-right: 7%;
+    		background-color:#FAE466;
+    		margin-top: 0;
+    		margin-bottom: 5px;
+    		padding-bottom: 5px;
+    		padding-top: 2px;
+    		border-radius: 20px;
+			}
+
+		article:hover {
+    		background-color:#FFEC80;
+    		/*margin-left: 4%;*/
+    		font-weight: bold;
+			}	
+		.dealer {
+			background-color: #91DBD6;
+			padding-top: 1px;
+			margin-top: 10px;
+		}	
+		.dealer:hover {
+			background-color: #7BEDCD;
+		}
+		.dealerName {
+			font-size: 20px;
+			background-color: #AE81DE;
+			text-align: center;
+		}
+		#title {
+			text-decoration: underline;
+		}
+		.rounded {
+			border-radius: 7px; 
+		}
+		.btn {
+			width: 110px;
+			height: 25px;
+			font-size: 15px;
+			padding: 0;
+			margin: 2px;
+			border: 1px;
+			font-weight: bold;
+			font-family: helvatica;
+			background-color: #58B6E8;
+			border-radius: 5px;
+		}
+		.btn:hover {
+			background-color: #5AE87E;
+		}
+		label {
+			font-size: 15px;
+			font-weight: bold;
+			font-family: helvatica;
+		}
+		.mainDiv {
+			width: 100%;
+		    height: 100%;
+		    margin-left: 0;
+		    margin-right: auto;
+		    margin-top: 2%;
+		    border-width: 1px;
+		    border-style: solid;;
+		    border-color: #000000;
+		    overflow: hidden;
+		}
+		.subDiv {
+			/* width: 50%;  Jedino mesto izmene */
+		    height: 100%;
+		    border-width: 1px;
+		    border-color: #000;
+		    border-style: solid;
+		    box-sizing:border-box;
+		    float: left; 
+		    background-color: #FFEC80;
+		}
+		img {
+			max-width:100%;
+			height:auto;
+		}
+		.hide {
+			display: none;
+		}
