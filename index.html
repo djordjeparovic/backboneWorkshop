@@ -22,12 +22,12 @@
 	"Backbone aplikacija" je web aplikacija struktuirana na način koji je predstavljen u backbone.js bibilioteci. To je MV* arhitektura.</p>
 	<p>Aplikaciju čine tri dela: Manipulacija DOM-a, Pomoćne funkcije (operacije sa objektima, operacije nad nizovima, ...) i Backbone.js bibilioteka koja određuje strukturu cele aplikacije.</p>
 	<img src="images/Vozic.png" class="large">
-	<p><span>jQuery</span> (ili neka druga srodna bibilioteka) služe da manipulišu DOM-om, jQuery je preporučen od strane Backbone-a, i cela komunikacija sa <span>HTML</span> dokumentom se odvija preko jQuery-a.</p>
+	<p><span>jQuery</span> (ili neka druga srodna bibilioteka) služi da manipuliše DOM-om, jQuery je preporučen od strane Backbone-a, i cela komunikacija sa <span>HTML</span> dokumentom se odvija preko jQuery-a.</p>
 	<p>Najčešće korištene <span>"utility"</span> biblioteke, <span>Underscore.js</span> i <span>Lodash.js</span> nude funkcionalnosti koje Backbone koristi interno, ali koje su potrebne i korisnicima za lakši razvoj aplikacije.<p>
 	<img src="images/BackboneCode1.png" class="large">
 	<p><span>Underscore.js</span> je <span>"hard-dependency"</span> za Backbone.js pa mora biti učitan pre <span>backbone.js</span> fajla. Takođe, ukoliko naša aplikacija koristi jQuery ili neku srodnu bibilioteku (a najverovatnije hoće), i ta biblioteka mora biti učitana pre Backbone-a.</p>
 	<p>Glavne beneficije koje Backbone nudi su visok stepen <span>fleksibilnosti</span> u načinu razvoja aplikacije, precizna <span>organizacija</span> koda (što nam omogućava efikasnije dodavanje novih funkcionalnosti i izmene postojećih) i <span>kontrola</span> svih delova aplikacije (nema mnogo "magije").</p>
-	<p>Pored svega ovoga, Backbone je samo Javascript <span>bibilioteka</span>, a ne fremvork jer se korisnik ne forsira da koristi ponuđene funkcionalnosti striktno "po receptu".</p>
+	<p>Pored svega ovoga, Backbone je samo Javascript <span>bibilioteka</span>, a ne frejmvork jer korisnika ne forsira da koristi ponuđene funkcionalnosti striktno "po receptu".</p>
 </article>
 
 <article>
@@ -43,22 +43,32 @@
 	</ul>
 	Aplikacija je sastavljena od jednog ili više modela, kolekcija, pogleda i rutera. Ti delovi međusobno komuniciraju i omogućavaju razne funkcionalnosti. 
 	<img src="images/Backbone021.png" class="large"><br>
-	Ovi delovi su objekti sa predefinisanim atributima (od kojih su neki definisani prazni), koje kada predefinišemo menjamo njihovo "default" ponašanje (proširujemo funkcionalnosti).</p>
+	Ovi delovi su objekti sa predefinisanim atributima (od kojih su neki inicijalno definisani prazni), koje kada predefinišemo menjamo njihovo podrazumevano ponašanje (proširujemo funkcionalnosti).</p>
 	<p>Pošto je neophodna međusobna komunikacija između različitih instanci od Backbone.View, Backbone.Model, Backbone.Collection i Backbone.Router potrebno je omogućiti njihovu međusobnu "vidljivost". Ne želimo da "prljamo" prostor globalnih varijabli sa više promenjivih iz aplikacije, pa je dobra praksa sve globalne promenjive potrebne za našu aplikaciju smestiti u jedan globalni objekat, a različite sekcije aplikacije u različite atribute tog objekta.
 	Npr ovako:<br>
 	<img src="images/Backbone022.png" class="verySmall">
 	</p>
+	<p>Ako aplikaciju pišemo unutar jednog IIFE modula ovakav "namespacing" nije neophodan, ali ne može da škodi - imamo jasan pregled na šta se odnosi bilo koja varijabla. U ostalim slučajevima je izuzetno koristan.</p>
 </article>
 
 <article>
 	<p><a id="backbone-model"><h2>Backbone.Model</h2></a>
-	<span>Backbone.Model</span> opisuje formu u kojoj se nalazi neki podatak unutar aplikacije, ili model iz realnog života. Npr. model automobila bi sadržao glavne podatke o automobilu : model, godište, potrošnja...</p>
-	<p>Običan Javascript objekat je takođe jedan model, a Backbone.Model uz sve to nudi funkcionalnosti koje se skoro uvek koriste. Npr. cesto citamo vrednosti modela, ili menjamo neke atribute (za to su definisane funkcije <span>get()</span> i <span>set()</span> ), validacija vrednosti atributa modela ( <span>validate()</span> ), dalje, ukoliko je potrebno dovući podatke sa mreže, metode za učitavanje podataka u model. ( <span>fetch()</span> ).
+	<span>Backbone.Model</span> opisuje formu u kojoj se nalazi neki podatak unutar aplikacije, ili model iz realnog života. Npr. model automobila bi sadržao glavne podatke o automobilu: model, godište, potrošnja...</p>
+	<p>Običan Javascript objekat je takođe jedan model, a Backbone.Model uz sve to nudi funkcionalnosti koje se skoro uvek koriste. Npr. često čitamo vrednosti modela, ili menjamo neke atribute (za to su definisane funkcije <span>get()</span> i <span>set()</span> ), proveravamo validnost vrednosti atributa modela ( <span>validate()</span> ), dalje, ukoliko je potrebno dovući podatke sa mreže, metode za učitavanje podataka u model ( <span>fetch()</span> ).
 	</p>
 	<p>Moguće je i postaviti podrazumevane vrednosti za atribute modela, što definišemo u <span>defaults</span> objektu. Osim ovih, postoji još veliki broj mogućnosti koje nudi Backbone.Model, a sve su opisane u Backbone dokumentaciji (<a href="http://backbonejs.org/#Model">http://backbonejs.org/#Model</a>).</p>
 	<p>Primer definicije jednog Backbone modela: <br>
 	<img src="images/BackboneModel.png" class="medium">	
 	</p>
+	<p>Kada se instancira Backbone.Model (npr <br><span>var Knjiga = new Backbone.Model.extend({<br>
+		&nbsp;defaults: {<br>
+		&nbsp;author: "Unknown", <br>
+		&nbsp;bookTitle: "Blank"<br>
+		}<br><br>
+	var model = new Knjiga();<br>
+	});</span>)<br>automatski se pozove <span>initialize()</span> metod iz Backbone.Model, i kao parametre primi ono što je prosleđeno konstruktoru. Međutim, argumenti <span>initialize()</span> nisu obavezni, ali mogu biti korisni u nekim situacijama - da kontruišemo model na različite načine pomoću promene parametara kontruktora (kao Facade patern).<br>
+	<span>initialize()</span> metod je dostupan i u drugim Backbone objektima.
+	</p><p>Kada smo, u primeru iznad, izveli (nasledili) jedan View objekat iz Backbone.View objekta koristili smo funkciju <span>extend()</span> koja potiče iz Underscore.js (ili Lodash.js).</p>
 </article>
 
 <article>
@@ -67,11 +77,12 @@
         Ukoliko apstraktnije posmatramo Backbone kolekciju, vidimo da je to niz objekata sa pomoćnim metodama koje nam omogućavaju manipulaciju, npr. sortiranje ( <span>sort()</span> ), filtriranje ( <span>filter()</span> ), izmene pojedinih objekata, dodavanje objekata u kolekciju ( <span>add()</span> ), brisanje ( <span>remove()</span> ), kao i operacije za popunjavanje kolekcije podacima sa mreže ( <span>fetch()</span> ), itd.
 	</p>
     <br><img src="images/BackboneCollection.png" class="medium"><br>
-    Kolekcije i modeli igraju veoma važnu ulogu u (možda) najbitnijem delu aplikacije, View-u, jer se u njima nalaze svi podaci koji ce biti predstavljeni korisniku. Posledica većeg dela korisnikovih akcija će promene modela i kolekcija u aplikaciji.
+    Kolekcije i modeli igraju veoma važnu ulogu u (možda) najbitnijem delu aplikacije, View-u, jer se u njima nalaze svi podaci koji će biti predstavljeni korisniku. Posledica većeg dela korisnikovih akcija će rezultovati promene modela i kolekcija u aplikaciji.
 
-    <p>U funkciji <span>Backbone.sync</span> je definisan način na koji će se podaci iz modela (kolekcija) slati na server, i ukoliko treba da napravimo neke izmene u odnosu na podrazumevani način komunikacije potrebno je da predefinišemo tu funkciju.</p>
+    <p>U funkciji <span>Backbone.sync</span> je definisan način na koji će se podaci iz modela (kolekcija) slati na server, i ukoliko treba da napravimo neke izmene u odnosu na podrazumevani način komunikacije potrebno je da predefinišemo tu funkciju. Ovu funkciju interno koriste metodi <span>fetch()</span> iz modela i kolekcije. </p>
     <p>Unutar Backbone.Collection objekta raspolazemo sa metodama <span>initialize() [prazan], toJSON(options) [mapira toJSON(options) iz Backbone.Model], sync() [Backbone.sync], add(models, options), remove(models, options), set(model, options), reset(models, options), push(models, options), pop(options), unshift(model, option) [dodaje model na početak], shift(options) [skida model sa početka kolekcije], slice(), get(obj), at(index), where(attrs, first), findWhere(attrs), sort(options), pluck(attrs), fetch(options), create(models, options), parse(resp, options) [return resp], clone(), modelId(attrs).</span> itd.
     </p>
+    <p>Backbone.Model, Backbone.Collection i Backbone.Router su unutar Backbone biblioteke fizički odvojeni, ali čine jednu celinu - deo aplikacije koji se bavi podacima.</p>
 </article>
 
 <article>
@@ -79,17 +90,17 @@
     Osnovna svrha instanci <span>Backbone.View</span> objekta je da prikažu podatke sačuvane u modelima i kolekcijama, ili podatke nastale tokom izvršavanja aplikacije. Pored toga, Backbone.View ima zadatak da osluškuje događaje, i na njih adekvatno reaguje.</p>
     <p>Kao i drugi Backbone objekti, i Backbone.View ima više atributa koje možemo predefinisati.
         <p><span>var viewOptions = ['model', 'collection', 'el', 'id', 'attributes', 'className', 'tagName', 'events'];</span></p>
-        Prvi od njih je <span>el</span> atribut, čija je vrednost DOM reprezentacija objekta kojim upravlja taj View. Kada se kaže da <span>View kontroliše (upravlja) neki DOM element</span>, misli se da View ima mehanizme da menja taj element, da osluškuje njegove događaje, da ga sakrije, prikaže, obriše, itd.
+        Prvi od njih je <span>el</span> atribut, čija je vrednost DOM reprezentacija objekta kojim upravlja taj View (pored <span>el</span> često pristupamo <span>$el</span> atributu koji se interno pravi i to jQuery objekat napravljen od <span>el</span> - <span>$(el)</span>). Kada se kaže da <span>View kontroliše (upravlja) neki DOM element</span>, misli se da View ima mehanizme da menja taj element, da osluškuje njegove događaje, da ga sakrije, prikaže, obriše, itd.
     </p>
     <p>Primer jednog Backbone.View objekta: <br>
         <img src="images/BackboneView01.png" class="medium"><br>Dakle, ovde je SearchView "prikačen" za $('#search_container') DOM element, i taj element popunjava sadržajem po uzoru na <span>templejt</span> koji se nalazi u $('#search_template').</p>
     <p>U prethodnom primeru smo videli da u jednom redu piše: <br>
         <span>var template = _.template( $("#search_template").html(), {} );</span> <br>
-    Na prvi pogled deluje nejasno, al zapravo je prilično jednostavno. Radi se o <span>template()</span> funkciji iz <span>Underscore.js</span> biblioteke (<a href="http://underscorejs.org/#template">http://underscorejs.org/#template</a>). Prvi parametar je string (HTML sadržaj) koji, opciono, može da zavisi od nekih promenjivih. Drugi parametar je objekat koji sadrži vrednosti promenjivih da se HTML objekat kompletira. U prethodnom slučaju nije bilo promenjivih, pa je zato prosleđeni objekat prazan. Istini za volju, <span>var template = _.template( $("#search_template").html(), {} );</span> je kao da smo pozvali <span>var template =  $("#search_template").html();</span>.</p>
+    Na prvi pogled deluje nejasno, al zapravo je prilično jednostavno. Radi se o <span>template()</span> funkciji iz <span>Underscore.js</span> biblioteke (<a href="http://underscorejs.org/#template">http://underscorejs.org/#template</a>). Prvi parametar je string (HTML sadržaj) koji, opciono, može da zavisi od nekih promenjivih. Drugi parametar je objekat koji sadrži vrednosti promenjivih da se HTML element kompletira. U prethodnom slučaju nije bilo promenjivih, pa je zato prosleđeni objekat prazan. Istini za volju, <span>var template = _.template( $("#search_template").html(), {} );</span> je kao da smo pozvali <span>var template =  $("#search_template").html();</span>.</p>
     <p>Primer: Kako može da izgleda neki element napravljem pomoću šablona (templejta) sa različitim podacima. <br><img src="images/BackboneTemplate01.png" class="medium"><br><img src="images/BackboneTemplate02.png">&nbsp;<img src="images/BackboneTemplate03.png"></p>
     <p>Često je zgodno napraviti pomoćnu <span>template( element )</span>  funkciju, da bismo imali lepši zapis prevođenja templejta.<br>
         <img src="images/Template.png" class="small"><br>
-        Ovoj funkciji je potrebno proslediti samo <span>id</span> HTML elementa u kojem se nalazi templejt, a kao rezultat dobićemo funkciju koja prima objekat sa promenjivim potrebnim da se dobije konačan HTML element.</p>
+        Ovoj funkciji je potrebno proslediti samo <span>id</span> HTML elementa u kojem se nalazi templejt, a kao rezultat dobićemo funkciju koja prima objekat (u obliku key:value) sa promenjivim potrebnim da se dobije konačan HTML element.</p>
 
     <p>Metod koji ćemo vrlo često hteti da predefinišemo (jer je skoro prazan) je <span>render()</span>. Po konvenciji taj metod vraća <span>this</span>, a služi da DOM element popunimo sadržajem. Metod <span>render()</span> ćemo pozvati kada želimo da apdejtujemo sadržaj, to može biti relativno često, pa nije poželjno da unutar tog metoda imamo neku kompleksnu logiku - ukoliko je tu kompleksna logika, nešto radite pogrešno.
     </p><p><span>initialize()</span> metod se poziva kada se kreira nova instanca tog objekta, isto kao kod Modela i Kolekcije.</p>
@@ -100,11 +111,11 @@
     </p>
     <p>
         Vidimo da unutar Veiw objekta imamo dosta metoda koje osim što se bave DOM strukturom stranice, upravljaju i događajima. Događaje (event, eventListener)
- teško da možemo logički razdvojiti od izgleda aplikacije. Većina elemenata na stranici treba da ponudi interaktivnost sa korisnikom, pa je reagovanje da korisnikove akcije sastavi deo View infrastrukture. </p>
-    <p>Događaji se definišu unutar Backbone.View objekta u events atributu, koji sadrži uređene parove <span>'događaj':'akcijaNaDogađaj'</span>. Na primer:<br>
+ teško da možemo logički razdvojiti od izgleda (prikaza i UX) aplikacije. Većina elemenata na stranici treba da ponudi interaktivnost sa korisnikom, pa je reagovanje da korisnikove akcije sastavi deo View infrastrukture. </p>
+    <p>Događaji se definišu unutar Backbone.View objekta u <span>events</span> atributu, koji sadrži uređene parove <span>'događaj':'akcijaNaDogađaj'</span>. Na primer:<br>
     <img src="images/Events.png"><br>
     </p>
-    <a href="http://backbonejs.org/docs/backbone.html#section-18"><span>Backbone.Events</span></a> pruža sličan interfejs kao i jQuery za rad sa događajima. Bitno je obratiti pažnju da kada se neki element uklanja iz Backbone.View objekta da li se istovremeno uklanja i eventListener za taj događajaj. Preporuka je koristiti metod <span>listenTo</span> umesto <span>on</span>.
+    <a href="http://backbonejs.org/docs/backbone.html#section-18"><span>Backbone.Events</span></a> pruža sličan interfejs kao i jQuery za rad sa događajima. Bitno je obratiti pažnju da kada se neki element uklanja iz Backbone.View objekta da li se istovremeno uklanja i eventListener za taj događajaj. Preporuka je koristiti metod <span>listenTo</span> umesto <span>on</span>. Tako kada treba ukloniti neki View (element iz DOMa) pored <span>this.$el.remove();</span> treba pozvati i <span>Backbone.View.undelegateEvents.call(this)</span>.
 </article>
 
 <article>
