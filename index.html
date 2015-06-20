@@ -64,9 +64,10 @@
 		&nbsp;defaults: {<br>
 		&nbsp;author: "Unknown", <br>
 		&nbsp;bookTitle: "Blank"<br>
-		}<br><br>
+		}<br>
+		});<br>
 	var model = new Knjiga();<br>
-	});</span>)<br>automatski se pozove <span>initialize()</span> metod iz Backbone.Model, i kao parametre primi ono što je prosleđeno konstruktoru. Međutim, argumenti <span>initialize()</span> nisu obavezni, ali mogu biti korisni u nekim situacijama - da kontruišemo model na različite načine pomoću promene parametara kontruktora (kao Facade patern).<br>
+	</span>)<br>automatski se pozove <span>initialize()</span> metod iz Backbone.Model, i kao parametre primi ono što je prosleđeno konstruktoru. Međutim, argumenti <span>initialize()</span> nisu obavezni, ali mogu biti korisni u nekim situacijama - da kontruišemo model na različite načine pomoću promene parametara kontruktora (kao Facade patern).<br>
 	<span>initialize()</span> metod je dostupan i u drugim Backbone objektima.
 	</p><p>Kada smo, u primeru iznad, izveli (nasledili) jedan View objekat iz Backbone.View objekta koristili smo funkciju <span>extend()</span> koja potiče iz Underscore.js (ili Lodash.js).</p>
 </article>
